@@ -1,2 +1,2 @@
 # Direction
-Shows direction between current to destination
+Shows direction between current and destination location.
