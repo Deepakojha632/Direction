@@ -250,7 +250,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                     .url(serverURL + "/" + modeOfTransport + "?api_key=" + DIRECTION_API_KEY + "&start=" + currentLongitude + "," + currentLatitude + "&end=" + Double.parseDouble(destinationLatLong[0]) + "," + Double.parseDouble(destinationLatLong[1]))
                     .build();
 
-
             try {
                 Log.i("Request", request.toString());
                 Response response = client.newCall(request).execute();
