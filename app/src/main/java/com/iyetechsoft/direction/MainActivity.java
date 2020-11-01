@@ -73,6 +73,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             ArrayAdapter ad = new ArrayAdapter(this, android.R.layout.simple_spinner_item, modes);
             ad.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             modesSpinner.setAdapter(ad);
+
             modesSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -94,6 +95,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             });
 
             currentLocation.setOnClickListener(v -> {
+                destLatLong.clearFocus();
                 latLong.setText("Fetching...");
                 getLocation();
             });
@@ -107,8 +109,10 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                     Toast.makeText(getApplicationContext(), "Please enter destination coordinates", Toast.LENGTH_SHORT).show();
                 }
             });
-        } else
+        } else {
             Toast.makeText(MainActivity.this, "No GPS Module.", Toast.LENGTH_SHORT).show();
+            this.finishAffinity();
+        }
     }
 
     public void getDirection() {
@@ -116,7 +120,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         if (currentLatitude > 0 && currentLongitude > 0) {
             dir.execute();
         } else
-            Toast.makeText(MainActivity.this, "No current Location found\nClick on location button below direction button", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this, "No current Location found. Click on location button below direction button", Toast.LENGTH_SHORT).show();
     }
 
 
