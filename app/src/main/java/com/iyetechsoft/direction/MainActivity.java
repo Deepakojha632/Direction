@@ -232,6 +232,13 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(MainActivity.this, ATCommand.class));
+        MainActivity.this.finishAffinity();
+    }
+
     class Direction extends AsyncTask<String, Void, String> {
 
         @Override
